@@ -82,7 +82,7 @@
     font-size: 1rem;
   }
 
-  .creator-img{
+  .creator-img {
     height: 100px;
     width: auto;
   }
@@ -156,14 +156,15 @@
   <h2>Recommended Creators</h2>
   <div class="row">
     <div class="col-lg-3 col-md-6 col-sl-12">
-      <a href="{% url 'profile' %}">
+      <a href="{% url 'creator' %}">
         <div class="card card1" style="width: 18rem;">
-          <img src="/static/assets/images/landing/rcreator1.png" class="card-img-top creator-img" alt="...">
+          <img src="/static\assets\images\products/fekikibanner.jpeg" class="card-img-top img-fluid creator-img" alt="...">
           <div class="card-body">
-            <h5 class="card-title center">Card title</h5>
+            <h5 class="card-title center">Fekiki Club</h5>
             <p class="card-text center">Some quick example text to build on the card title and make up the bulk of the
               card's
-              content.</p>
+              content.
+            </p>
           </div>
         </div>
       </a>
@@ -173,10 +174,11 @@
         <div class="card card1" style="width: 18rem;">
           <img src="/static/assets/images/landing/rcreator2.jpeg" class="card-img-top creator-img" alt="...">
           <div class="card-body">
-            <h5 class="card-title center">Card title</h5>
+            <h5 class="card-title center">Warrior Women</h5>
             <p class="card-text center">Some quick example text to build on the card title and make up the bulk of the
               card's
-              content.</p>
+              content.
+            </p>
           </div>
         </div>
       </a>
@@ -186,10 +188,11 @@
         <div class="card card1" style="width: 18rem;">
           <img src="/static/assets/images/landing/rcreator3.png" class="card-img-top creator-img" alt="...">
           <div class="card-body">
-            <h5 class="card-title center">Card title</h5>
+            <h5 class="card-title center">Meta Angel</h5>
             <p class="card-text center">Some quick example text to build on the card title and make up the bulk of the
               card's
-              content.</p>
+              content.
+            </p>
           </div>
         </div>
       </a>
@@ -199,10 +202,11 @@
         <div class="card card1" style="width: 18rem;">
           <img src="/static/assets/images/landing/rcreator4.jpeg" class="card-img-top creator-img" alt="...">
           <div class="card-body">
-            <h5 class="card-title center">Card title</h5>
+            <h5 class="card-title center">One Ape</h5>
             <p class="card-text center">Some quick example text to build on the card title and make up the bulk of the
               card's
-              content.</p>
+              content.
+            </p>
           </div>
         </div>
       </a>
@@ -214,8 +218,10 @@
   <h2>Trending</h2>
   <div class="row">
     {% for item in nfts %}
+    
+    {% if item.is_featured == 'True' %}
     <div class="col-lg-3 col-md-6 col-sl-12">
-      <a href="#">
+      <a href="{% url 'product' item.id %}">
         <div class="card card2" style="width: 18rem;">
           <img src="{{item.image.url}}" class="card-img-top" alt="...">
           <div class="card-body">
@@ -226,6 +232,8 @@
         </div>
       </a>
     </div>
+    {% endif %}
+      
     {% empty %}
     <div class="alert alert-warning text-center" role="alert">
       <h4 class="alert-heading">No Products found!</h4>
@@ -234,13 +242,16 @@
   </div>
 </div>
 
+
+
 <div class="container-fluid">
   <h2>Art</h2>
   <div class="row">
-    
+
     {% for item in nfts %}
+    {% if item.category.name == 'Art' %}
     <div class="col-lg-3 col-md-6 col-sl-12">
-      <a href="#">
+      <a href="{% url 'product' item.id %}">
         <div class="card card2" style="width: 18rem;">
           <img src="{{item.image.url}}" class="card-img-top" alt="...">
           <div class="card-body">
@@ -251,12 +262,16 @@
         </div>
       </a>
     </div>
+    {% endif %}
+
     {% empty %}
     <div class="alert alert-warning text-center" role="alert">
       <h4 class="alert-heading">No Nft found!</h4>
     </div>
     {% endfor %}
-      
+
   </div>
 </div>
+
+
 {% endblock content %}

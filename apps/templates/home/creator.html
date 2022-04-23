@@ -3,116 +3,70 @@
 
 {% block stylesheets %}
 <style>
-    .contain{
+  .contain {
     height: 300px;
     background-image: url("/static/assets/images/landing/cara.jpeg");
   }
-  .creator-head{
+
+  .creator-head {
     text-align: center;
     padding-top: 40px;
     padding-bottom: 20px;
   }
-  .creator-descp{
+
+  .creator-descp {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 70px;
   }
-  a{
+
+  a {
     text-decoration: none;
     color: black;
   }
-  a:hover{
+
+  a:hover {
     color: black;
   }
 </style>
 {% endblock stylesheets %}
-  
+
 {% block content %}
 <div class="contain"></div>
 
 <div class="container">
-  <h3 class="creator-head">PACHISPACE</h3>
+  <h3 class="creator-head">Fekiki Club</h3>
   <h5 class="creator-descp">A unique collection of 888 Unbothered Frenchies out now! <br>
     Instagram/Twitter: @pachispace
-    <br>Discord: https://discord.gg/pachispace</h5>
+    <br>Discord: https://discord.gg/pachispace
+  </h5>
 </div>
 
 <div class="container-fluid">
   <div class="row">
+    {% for item in nfts %}
+    {% if item.user.name == 'FekikiClub' %}
     <div class="col-lg-3 col-md-6 col-sl-12">
-      <a href="#">
+      <a href="{% url 'product' item.id %}">
         <div class="card card2" style="width: 18rem;">
-          <img src="/static/assets/images/landing/nft/nft1.png" class="card-img-top" alt="...">
+          <img src="{{item.image.url}}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p>Current Bid: </p>
-            <P>Creator: </P>
+            <h5 class="card-title">{{item.title}}</h5>
+            <p>Current Bid: {{item.price}} {{item.currency}}</p>
+            <P>Creator: {{item.owner}}</P>
           </div>
         </div>
       </a>
     </div>
-    <div class="col-lg-3 col-md-6 col-sl-12">
-      <a href="#">
-        <div class="card card2" style="width: 18rem;">
-          <img src="/static/assets/images/landing/nft/nft1.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p>Current Bid: </p>
-            <P>Creator: </P>
-          </div>
-        </div>
-      </a>
+    {% endif %}
+
+    {% empty %}
+    <div class="alert alert-warning text-center" role="alert">
+      <h4 class="alert-heading">No Nft found!</h4>
     </div>
-    <div class="col-lg-3 col-md-6 col-sl-12">
-      <a href="#">
-        <div class="card card2" style="width: 18rem;">
-          <img src="/static/assets/images/landing/nft/nft1.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p>Current Bid: </p>
-            <P>Creator: </P>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sl-12">
-      <a href="#">
-        <div class="card card2" style="width: 18rem;">
-          <img src="/static/assets/images/landing/nft/nft1.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p>Current Bid: </p>
-            <P>Creator: </P>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sl-12">
-      <a href="#">
-        <div class="card card2" style="width: 18rem;">
-          <img src="/static/assets/images/landing/nft/nft1.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p>Current Bid: </p>
-            <P>Creator: </P>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sl-12">
-      <a href="#">
-        <div class="card card2" style="width: 18rem;">
-          <img src="/static/assets/images/landing/nft/nft1.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p>Current Bid: </p>
-            <P>Creator: </P>
-          </div>
-        </div>
-      </a>
-    </div>
+    {% endfor %}
+
   </div>
 </div>
 {% endblock content %}
-  

@@ -4,6 +4,14 @@
     font-family: 'Fredoka', sans-serif;
     font-weight: 400;
   }
+
+  .btn-custom-login{
+    margin-right: 10px;
+  }
+
+  .btn-custom-register{
+    background-color: yellow;
+  }
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -14,8 +22,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+        {% if user.is_superuser %}
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'product' %}">Products</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'viewfeedback' %}">Feedbacks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'categoryrequest' %}">Category Requests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/admin">Admin</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Products</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'feedback' %}">Feedback</a>
@@ -27,16 +47,6 @@
           <a class="nav-link active" aria-current="page" href="#">About Us</a>
         </li>
 
-        {% if user.is_superuser %}
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'viewfeedback' %}">Feedbacks</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'categoryrequest' %}">Category Requests</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/admin">Admin</a>
-        </li>
         {% endif %}
       </ul>
       <form class="d-flex" action="#" autocomplete="off" >
@@ -44,7 +54,7 @@
         placeholder="Search" aria-label="Search" name="query">
         <button class="btn btn-light rounded-0" type="submit"> <i class="fa fa-search" aria-hidden="true"></i> </button>
       </form>
-      {% if user %}
+      {% if user.is_authenticated %}
       <div class="dropdown btn-drop">
         <a class="btn  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
           {{user.username}}
@@ -59,10 +69,10 @@
       </div>
       {% else %}
       <div class="float-none float-sm-right d-block mt-1 mt-sm-0">
-        <a href="{% url 'login' %}"><button class="btn btn-outline-success">Login</button></a>
+        <a href="{% url 'login' %}"><button class="btn btn-custom-login btn-outline-success">Login</button></a>
       </div>
       <div class="float-none float-sm-right d-block mt-1 mt-sm-0">
-        <a href="{% url 'register' %}"><button class="btn btn-outline-success">Register</button></a>
+        <a href="{% url 'register' %}"><button class="btn btn-custom-register btn-outline-success">Register</button></a>
       </div>
       {% endif %}
     </div>

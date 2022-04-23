@@ -123,7 +123,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(CORE_DIR, 'mediafiles')
+MEDIA_ROOT = os.path.join(CORE_DIR, 'media')
 MEDIA_URL = '/media/'
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
@@ -132,6 +132,6 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+LOGOUT_REDIRECT_URL = '/'
 #############################################################
 #############################################################

@@ -64,24 +64,24 @@
 <div class="container-fluid outer-box">
   <div class="row">
     <div class="col-lg-5 left-panel">
-      <img class="thumbnail" src="{{nfts.image.url}}" alt="testing">
+      <img class="thumbnail" src="{{product.image.url}}" alt="testing">
       <h2 class="des-head">Description</h2>
-      <h5>{{nfts.description}}</h5>
+      <h5>{{product.description}}</h5>
 
       <h2 class="detail-head">Details</h2>
-      <h5>Creator : {{nfts.creator}}</h5>
-      <h5>Owner : {{nfts.owner}}</h5>
-      <h5>Contract Address : {{nfts.contract_address}}</h5>
-      <h5>Token Id : {{nfts.token_id}}</h5>
+      <h5>Creator : {{product.creator}}</h5>
+      <h5>Owner : {{product.owner}}</h5>
+      <h5>Contract Address : {{product.contract_address}}</h5>
+      <h5>Token Id : {{product.token_id}}</h5>
     </div>
     <div class="col-lg-7">
       <img class="logo" src="/static/assets/images/landing/nft/nft1.png" alt="">
       <h5 class="owner-head">{{user.username}}</h5>
-      <h2 class="nft-head">{{nfts.title}}</h2>
-      <h5 class="type">{{nfts.category}}</h5>
+      <h2 class="nft-head">{{product.title}}</h2>
+      <h5 class="type">{{product.category}}</h5>
       <p>Price</p>
-      <h2>{{nfts.price}} {{nfts.currency}}</h2>
-      <a href="{% url 'checkout' %}"><button class="buy-button">Buy Now</button></a>
+      <h2>{{product.price}} {{product.currency}}</h2>
+      <a href="{% url 'checkout' product.id %}"><button class="buy-button">Buy Now</button></a>
       <a href="{% url 'bid' %}"><button class="offer-button">Make an Offer</button></a>
 
       <h4 class="pro-head">Provenance</h4>

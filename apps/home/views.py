@@ -9,9 +9,10 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
+from sympy import Id
 from .forms import *
 from .models import *
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 @login_required(login_url="/login/")
@@ -33,14 +34,15 @@ def categoryrequest(request):
 def viewfeedback(request):
     feed = Feedback.objects.all()
     ctx = {'title': "All Feedbacks",
-           'feed': feed,
-           }
+           'feed': feed}
     return render(request, "home/viewfeedback.html", ctx)
 
 def landing(request):
+    categories = Category.objects.all()
     nfts = Nft.objects.all()
     ctx = {'title': "Home",
            'nfts': nfts,
+           'cats':categories,
            }
     return render(request, "home/landing.html", ctx)
 
@@ -98,17 +100,17 @@ def feedback(request):
     html_template = loader.get_template('home/feedback.html')
     return render(request,'home/feedback.html',context = context)
 
-def product(request):
+def product(request,id):
     context = {'segment': 'product'}
+    product = get_object_or_404(Nft,pk=id)
+    context['product'] = product
+    return render(request, 'home/product.html',context=context)
 
-    html_template = loader.get_template('home/product.html')
-    return HttpResponse(html_template.render(context, request))
-
-def checkout(request):
-    context = {'segment': 'checkout'}
-
-    html_template = loader.get_template('home/checkout.html')
-    return HttpResponse(html_template.render(context, request))
+def checkout(request,id):
+    context = {'segment': 'product'}
+    product = get_object_or_404(Nft,pk=id)
+    context['product'] = product
+    return render(request, 'home/checkout.html',context=context)
 
 @login_required(login_url="/login/")
 def profile(request):
@@ -137,10 +139,13 @@ def bid(request):
     return render(request,'home/bid.html',context = context)
 
 def creator(request):
-    context = {'segment': 'creator'}
-
-    html_template = loader.get_template('home/creator.html')
-    return HttpResponse(html_template.render(context, request))
+    categories = Category.objects.all()
+    nfts = Nft.objects.all()
+    ctx = {'title': "Recommended Creator",
+           'nfts': nfts,
+           'cats': categories,
+           }
+    return render(request, "home/creator.html", ctx)
 
 
 @login_required(login_url="/login/")
