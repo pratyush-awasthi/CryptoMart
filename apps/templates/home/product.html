@@ -1,0 +1,106 @@
+{% extends "layouts/base.html" %}
+
+
+{% block stylesheets %}
+<style>
+  .thumbnail {
+    height: 375px;
+    width: auto;
+    border-radius: 5px;
+  }
+
+  .outer-box {
+    padding-top: 50px;
+  }
+
+  .logo {
+    height: 25px;
+    width: auto;
+    border-radius: 12.5px;
+  }
+
+  .left-panel {
+    padding-left: 100px;
+    padding-right: 70px;
+  }
+
+  .buy-button {
+    width: 300px;
+    height: 50px;
+    background-color: yellow;
+    border-radius: 5px;
+  }
+
+  .offer-button {
+    width: 450px;
+    height: 50px;
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  .des-head {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+
+  .detail-head {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+
+  .pro-head {
+    padding-top: 40px;
+    padding-bottom: 20px;
+  }
+
+  h5{
+    padding-bottom: 10px;
+  }
+</style>
+{% endblock stylesheets %}
+
+
+{% block content %}
+<div class="container-fluid outer-box">
+  <div class="row">
+    <div class="col-lg-5 left-panel">
+      <img class="thumbnail" src="{{nfts.image.url}}" alt="testing">
+      <h2 class="des-head">Description</h2>
+      <h5>{{nfts.description}}</h5>
+
+      <h2 class="detail-head">Details</h2>
+      <h5>Creator : {{nfts.creator}}</h5>
+      <h5>Owner : {{nfts.owner}}</h5>
+      <h5>Contract Address : {{nfts.contract_address}}</h5>
+      <h5>Token Id : {{nfts.token_id}}</h5>
+    </div>
+    <div class="col-lg-7">
+      <img class="logo" src="/static/assets/images/landing/nft/nft1.png" alt="">
+      <h5 class="owner-head">{{user.username}}</h5>
+      <h2 class="nft-head">{{nfts.title}}</h2>
+      <h5 class="type">{{nfts.category}}</h5>
+      <p>Price</p>
+      <h2>{{nfts.price}} {{nfts.currency}}</h2>
+      <a href="{% url 'checkout' %}"><button class="buy-button">Buy Now</button></a>
+      <a href="{% url 'bid' %}"><button class="offer-button">Make an Offer</button></a>
+
+      <h4 class="pro-head">Provenance</h4>
+
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Action</th>
+          <th>Trade Price</th>
+          <th>Date</th>
+        </tr>
+        <tr>
+          <td>Pratyush</td>
+          <td>Mint</td>
+          <td></td>
+          <td>12/04/2022</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}

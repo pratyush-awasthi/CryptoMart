@@ -1,0 +1,42 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block stylesheets %}
+<style>
+    .feedback-head {
+        text-align: center;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        text-transform: uppercase;
+    }
+    .feed-body{
+        background-color: #756f6f31;
+        margin-left: 40px;
+        margin-right: 40px;
+        border-radius: 10px;
+    }
+</style>
+{% endblock stylesheets %}
+
+
+{% block content %}
+<h2 class="feedback-head">Lets go through some Feedbacks</h2>
+{% for item in feed %}
+<div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-lg-12">
+        <div class="card-body feed-body">
+          <h5 class="card-title">{{item.name}}</h5>
+          <p class="card-text">{{item.email}}</p>
+          <p class="card-text">{{item.description|truncatechars:500}}</p>
+          <p class="card-text"><small class="text-muted">{{item.time}}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% empty %}
+<div class="alert alert-warning text-center" role="alert">
+    <h4 class="alert-heading ">No Feedbacks found! That means everything is going good</h4>
+</div>
+{% endfor %}
+{% endblock content %}

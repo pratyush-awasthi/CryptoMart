@@ -1,0 +1,262 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<style>
+  .cara-img:hover {
+    zoom: 100%;
+  }
+
+  .sale-preview {
+    color: aqua;
+    display: flex;
+    justify-content: center;
+    box-shadow: grey 5px;
+    margin: 50px;
+    padding: 20px;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .card {
+    margin: 10px;
+  }
+
+  .container-fluid {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .card1 {
+    max-width: 250px;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:hover {
+    color: black;
+  }
+
+  .cara-img-1 {
+    height: 550px;
+    background-image: url("/static/assets/images/landing/cryptomart.jpg");
+    background-position: center;
+  }
+
+  .cara-img-2 {
+    height: 550px;
+    background-image: url("/static/assets/images/landing/andal.jpeg");
+    background-position: center;
+  }
+
+  .cara-img-3 {
+    height: 550px;
+    background-image: url("/static/assets/images/landing/cara2.png");
+    background-position: center;
+  }
+
+  .cara-img-4 {
+    height: 550px;
+    background-image: url("/static/assets/images/landing/cara3.png");
+    background-position: center;
+  }
+
+  .cara-img-5 {
+    height: 550px;
+    background-image: url("/static/assets/images/landing/cara4.png");
+    background-position: center;
+  }
+
+  .slide-head {
+    color: black;
+    font-size: 1.5rem;
+  }
+
+  .slide-line {
+    color: black;
+    font-size: 1rem;
+  }
+
+  .creator-img{
+    height: 100px;
+    width: auto;
+  }
+</style>
+{% endblock stylesheets %}
+
+
+{% block content %}
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+      aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <a href="{% url 'login' %}">
+        <div class="cara-img-1"></div>
+      </a>
+      <div class="carousel-caption d-none d-md-block">
+        <h5 class="slide-head">CryptoMart</h5>
+        <p class="slide-line">NFT is choosing between what you want now and what you want most.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="cara-img-2"></div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5 class="slide-head">First slide label</h5>
+        <p class="slide-line">Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="cara-img-3"></div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5 class="slide-head">First slide label</h5>
+        <p class="slide-line">Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="cara-img-4"></div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5 class="slide-head">First slide label</h5>
+        <p class="slide-line">Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="cara-img-5"></div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5 class="slide-head">First slide label</h5>
+        <p class="slide-line">Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<marquee class="sale-preview" behavior="scroll" direction="up" scrollamount="2">Latest NFT Sold ek crore nft bik chuki
+  hai samjhe</marquee>
+
+<div class="container-fluid">
+  <h2>Recommended Creators</h2>
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sl-12">
+      <a href="{% url 'profile' %}">
+        <div class="card card1" style="width: 18rem;">
+          <img src="/static/assets/images/landing/rcreator1.png" class="card-img-top creator-img" alt="...">
+          <div class="card-body">
+            <h5 class="card-title center">Card title</h5>
+            <p class="card-text center">Some quick example text to build on the card title and make up the bulk of the
+              card's
+              content.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sl-12">
+      <a href="#">
+        <div class="card card1" style="width: 18rem;">
+          <img src="/static/assets/images/landing/rcreator2.jpeg" class="card-img-top creator-img" alt="...">
+          <div class="card-body">
+            <h5 class="card-title center">Card title</h5>
+            <p class="card-text center">Some quick example text to build on the card title and make up the bulk of the
+              card's
+              content.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sl-12">
+      <a href="#">
+        <div class="card card1" style="width: 18rem;">
+          <img src="/static/assets/images/landing/rcreator3.png" class="card-img-top creator-img" alt="...">
+          <div class="card-body">
+            <h5 class="card-title center">Card title</h5>
+            <p class="card-text center">Some quick example text to build on the card title and make up the bulk of the
+              card's
+              content.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sl-12">
+      <a href="#">
+        <div class="card card1" style="width: 18rem;">
+          <img src="/static/assets/images/landing/rcreator4.jpeg" class="card-img-top creator-img" alt="...">
+          <div class="card-body">
+            <h5 class="card-title center">Card title</h5>
+            <p class="card-text center">Some quick example text to build on the card title and make up the bulk of the
+              card's
+              content.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <h2>Trending</h2>
+  <div class="row">
+    {% for item in nfts %}
+    <div class="col-lg-3 col-md-6 col-sl-12">
+      <a href="#">
+        <div class="card card2" style="width: 18rem;">
+          <img src="{{item.image.url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{item.title}}</h5>
+            <p>Current Bid: {{item.price}} {{item.currency}}</p>
+            <P>Creator: {{item.owner}}</P>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% empty %}
+    <div class="alert alert-warning text-center" role="alert">
+      <h4 class="alert-heading">No Products found!</h4>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="container-fluid">
+  <h2>Art</h2>
+  <div class="row">
+    
+    {% for item in nfts %}
+    <div class="col-lg-3 col-md-6 col-sl-12">
+      <a href="#">
+        <div class="card card2" style="width: 18rem;">
+          <img src="{{item.image.url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{item.title}}</h5>
+            <p>Current Bid: {{item.price}} {{item.currency}}</p>
+            <P>Creator: {{item.owner}}</P>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% empty %}
+    <div class="alert alert-warning text-center" role="alert">
+      <h4 class="alert-heading">No Nft found!</h4>
+    </div>
+    {% endfor %}
+      
+  </div>
+</div>
+{% endblock content %}

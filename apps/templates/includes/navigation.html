@@ -1,0 +1,70 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
+  a{
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 400;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">CryptoMart</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'product' %}">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'feedback' %}">Feedback</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Community</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">About Us</a>
+        </li>
+
+        {% if user.is_superuser %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'viewfeedback' %}">Feedbacks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'categoryrequest' %}">Category Requests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/admin">Admin</a>
+        </li>
+        {% endif %}
+      </ul>
+      <form class="d-flex" action="#" autocomplete="off" >
+        <input class="form-control custom-font rounded-0" type="search" 
+        placeholder="Search" aria-label="Search" name="query">
+        <button class="btn btn-light rounded-0" type="submit"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+      </form>
+      {% if user %}
+      <div class="dropdown btn-drop">
+        <a class="btn  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          {{user.username}}
+        </a>
+        
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li><a class="dropdown-item" href="{% url 'profile' %}">Dashboard</a></li>
+          <li><a class="dropdown-item" href="{% url 'newupload' %}">New Nft</a></li>
+          <li><a class="dropdown-item" href="{% url 'newcategory' %}">New Category</a></li>
+          <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+      </div>
+      {% else %}
+      <div class="float-none float-sm-right d-block mt-1 mt-sm-0">
+        <a href="{% url 'login' %}"><button class="btn btn-outline-success">Login</button></a>
+      </div>
+      <div class="float-none float-sm-right d-block mt-1 mt-sm-0">
+        <a href="{% url 'register' %}"><button class="btn btn-outline-success">Register</button></a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</nav>

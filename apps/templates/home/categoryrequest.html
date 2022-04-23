@@ -1,0 +1,45 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block stylesheets %}
+    <style>
+        .category-head {
+        text-align: center;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        text-transform: uppercase;
+    }
+    .cate-body{
+        background-color: #756f6f31;
+        margin-left: 40px;
+        margin-right: 40px;
+        border-radius: 10px;
+    }
+    </style>
+{% endblock stylesheets %}
+    
+
+{% block content %}
+<h2 class="category-head">Requested Categories</h2>
+{% for item in req %}
+<div class="card mb-3 cate-body">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="/static/assets/images/upload.jpg" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
+          <p class="card-text">{{item.email}}</p>
+          <p class="card-text">{{item.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% empty %}
+<div class="alert alert-warning text-center" role="alert">
+    <h4 class="alert-heading ">No Request Pending!</h4>
+</div>
+{% endfor %}
+{% endblock content %}
+    

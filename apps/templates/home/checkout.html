@@ -1,0 +1,57 @@
+{% extends 'layouts/base.html' %}
+
+
+
+{% block stylesheets %}
+    <style>
+        .checkout-head{
+            padding-top: 30px;
+            padding-bottom: 20px;
+        }
+        .price-head{
+            padding-top: 20px;
+        }
+        .ship-head{
+            padding-top: 20px;
+        }
+        .sub-head{
+            padding-top: 20px;
+        }
+        .total-head{
+            padding-top: 20px;
+        }
+    </style>
+{% endblock stylesheets %}
+    
+
+{% block content %}
+<div class="container">
+    <h3 class="checkout-head">Checkout</h3>
+    <div class="row">
+        <div class="col-lg-6">
+
+        </div>
+        <div class="col-lg-6">
+            <h4>Order Summary</h4>
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="..." class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text"><small class="text-muted">Category</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h4 class="price-head">Price : </h4>
+              <h4 class="ship-head">Shipping : </h4>
+              <h4 class="sub-head">Sub-Total : </h4>
+              <h4 class="total-head">Order Total : </h4>
+        </div>
+    </div>
+</div>
+{% endblock content %}

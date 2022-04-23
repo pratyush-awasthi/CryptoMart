@@ -1,0 +1,78 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% block title %} Sign In {% endblock %} 
+
+<!-- Specific CSS Plugins goes HERE  -->
+{% block css_plugins %}{% endblock css_plugins %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+  <style>
+    .custom-back{
+      background-image: url("/static/assets/images/auth/back.jpg");
+    }
+    .image-logo{
+      width: 50px;
+      height: auto;
+    }
+  </style>
+{% endblock stylesheets %}
+
+{% block content %} 
+
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <div class="brand-logo">
+                <img class="image-logo" src="/static/assets/images/logo.svg" alt="logo">
+              </div>
+              <h4>
+                CryptoMart
+              </h4>
+              <br />
+              <h6 class="fw-light">
+                {% if msg %}
+                    <span class="text-danger">{{ msg | safe }}</span>
+                {% else %}
+                    Add your credentials
+                {% endif %}
+              </h6>
+              <form method="post" action="" class="pt-3">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+                  {{ form.username }}
+                </div>
+                <div class="form-group">
+                  {{ form.password }}
+                </div>
+                <div class="mt-3">
+                  <button type="submit" name="login" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Login</button>
+                </div>
+                <div class="my-2 d-flex justify-content-between align-items-center">
+                  <div class="form-check">
+                    <label class="form-check-label text-muted">
+                      <input type="checkbox" class="form-check-input">
+                      Keep me signed in
+                    </label>
+                  </div>
+                  <a href="{% url 'register' %}" class="auth-link text-black">Create Account</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+  
+{% endblock content %}
+
+<!-- Specific JS Plugins goes HERE  -->
+{% block js_plugins %}{% endblock js_plugins %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
