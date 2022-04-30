@@ -93,7 +93,7 @@ def feedback(request):
             logo.user = request.user
             logo.save()
             messages.success(request,'Feedback successfully posted.')
-            return redirect('dashboard')
+            return redirect('/')
         else:
             messages.error(request,'Feedback could not be posted.')
     context['form'] = form

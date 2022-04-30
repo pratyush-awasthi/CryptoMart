@@ -76,7 +76,7 @@
     </div>
     <div class="col-lg-7">
       <img class="logo" src="/static/assets/images/landing/nft/nft1.png" alt="">
-      <h5 class="owner-head">{{user.username}}</h5>
+      <h5 class="owner-head">{{product.owner}}</h5>
       <h2 class="nft-head">{{product.title}}</h2>
       <h5 class="type">{{product.category}}</h5>
       <p>Price</p>
@@ -88,16 +88,16 @@
 
       <table>
         <tr>
-          <th>Name</th>
-          <th>Action</th>
-          <th>Trade Price</th>
-          <th>Date</th>
+          <th class="table-head">Name</th>
+          <th class="table-head">Action</th>
+          <th class="table-head">Trade Price</th>
+          <th class="table-head">Date</th>
         </tr>
         <tr>
-          <td>Pratyush</td>
-          <td>Mint</td>
-          <td></td>
-          <td>12/04/2022</td>
+          <td class="table-cell">{{product.minted_by}}</td>
+          <td class="table-cell">Mint</td>
+          <td class="table-cell"></td>
+          <td class="table-cell">{{product.mint_date}}</td>
         </tr>
       </table>
     </div>
