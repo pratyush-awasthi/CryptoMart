@@ -20,6 +20,14 @@
         padding-top: 30px;
         padding-bottom: 20px;
     }
+    .current-price{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .bid-form{
+        margin-top: 90px;
+        margin-bottom: auto;
+    }
 </style>
 {% endblock stylesheets %}
 
@@ -28,8 +36,13 @@
 <div class="contain">
     <div class="container ">
         <div class="row">
-            <h3 class="bid-title">Please place your bid for {{nfts.title}}</h3>
+            <h3 class="bid-title">Please place your bid for {{product.title}}</h3>
             <div class="col-lg-6">
+                <img class="thumbnail" src="{{product.image.url}}" alt="testing">
+
+                <h2 class="current-price">Current Price : {{product.price}} {{product.currency}}</h2>
+            </div>
+            <div class="col-lg-6 bid-form">
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{form|crispy}}

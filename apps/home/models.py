@@ -143,7 +143,7 @@ class Bid(models.Model):
 
     def __str__(self):
         """Unicode representation of Bid."""
-        return self.nft
+        return self.amount
 
 class NewCategory(models.Model):
     name = models.CharField(max_length=225)

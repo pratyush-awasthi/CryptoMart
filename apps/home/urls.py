@@ -20,6 +20,6 @@ urlpatterns = [
     path('category/new/', views.newcategory, name='newcategory'),
     path('your/valuable/feedback/', views.feedback, name='feedback'),
     path('upload/new/nft/', views.newupload, name='newupload'),
-    path('bidding/', views.bid, name='bid'),
+    path('bidding/<int:id>', views.bid, name='bid'),
     path('checkout/product/buy/<int:id>/', views.checkout, name='checkout'),
 ]

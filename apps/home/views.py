@@ -89,9 +89,9 @@ def feedback(request):
     if request.method=='POST':
         form  = FeedbackForm(request.POST, request.FILES)
         if form.is_valid():
-            logo = form.save(commit=False)
-            logo.user = request.user
-            logo.save()
+            feed = form.save(commit=False)
+            feed.user = request.user
+            feed.save()
             messages.success(request,'Feedback successfully posted.')
             return redirect('/')
         else:
@@ -121,17 +121,20 @@ def profile(request):
 
 
 @login_required(login_url="/login/")
-def bid(request):
+def bid(request,id):
     context = {'segment': 'bid'}
     form = BidForm()
+    product = get_object_or_404(Nft,pk=id)
+    context['product'] = product
     if request.method=='POST':
         form  = BidForm(request.POST, request.FILES)
         if form.is_valid():
-            logo = form.save(commit=False)
-            logo.user = request.user
-            logo.save()
+            bid = form.save(commit=False)
+            bid.user = request.user
+            bid.nft = product
+            bid.save()
             messages.success(request,'Bid successfully posted.')
-            return redirect('product')
+            return redirect('product',id=id)
         else:
             messages.error(request,'bid could not be posted.')
     context['form'] = form

@@ -82,23 +82,38 @@
       <p>Price</p>
       <h2>{{product.price}} {{product.currency}}</h2>
       <a href="{% url 'checkout' product.id %}"><button class="buy-button">Buy Now</button></a>
-      <a href="{% url 'bid' %}"><button class="offer-button">Make an Offer</button></a>
+      <a href="{% url 'bid' product.id %}"><button class="offer-button">Make an Offer</button></a>
 
       <h4 class="pro-head">Provenance</h4>
-
-      <table>
-        <tr>
-          <th class="table-head">Name</th>
-          <th class="table-head">Action</th>
-          <th class="table-head">Trade Price</th>
-          <th class="table-head">Date</th>
-        </tr>
-        <tr>
-          <td class="table-cell">{{product.minted_by}}</td>
-          <td class="table-cell">Mint</td>
-          <td class="table-cell"></td>
-          <td class="table-cell">{{product.mint_date}}</td>
-        </tr>
+      
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+            <th scope="col">Trade Price</th>
+            <th scope="col">Date Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"></th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+          <tr>
+            <th scope="row">{{product.minted_by}}</th>
+            <td>Mint</td>
+            <td></td>
+            <td>{{product.mint_date}}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
