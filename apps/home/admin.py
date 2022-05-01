@@ -59,6 +59,6 @@ class NewCategoryAdmin(admin.ModelAdmin):
 class FeedbackAdmin(admin.ModelAdmin):
     '''Admin View for Feedback'''
   
-    list_display = ('name','email','time','description',)
+    list_display = ('name','subject','contact_no','email','time','description',)
     search_fields = ('name',)
    

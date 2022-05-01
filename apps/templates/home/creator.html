@@ -46,7 +46,7 @@
 <div class="container-fluid">
   <div class="row">
     {% for item in nfts %}
-    {% if item.user.name == 'FekikiClub' %}
+
     <div class="col-lg-3 col-md-6 col-sl-12">
       <a href="{% url 'product' item.id %}">
         <div class="card card2" style="width: 18rem;">
@@ -59,7 +59,6 @@
         </div>
       </a>
     </div>
-    {% endif %}
 
     {% empty %}
     <div class="alert alert-warning text-center" role="alert">

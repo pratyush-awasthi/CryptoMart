@@ -71,9 +71,9 @@ def newcategory(request):
     if request.method=='POST':
         form  = NewCategoryForm(request.POST, request.FILES)
         if form.is_valid():
-            logo = form.save(commit=False)
-            logo.user = request.user
-            logo.save()
+            new = form.save(commit=False)
+            new.user = request.user
+            new.save()
             messages.success(request,'New Category successfully requested.')
             return redirect('dashboard')
         else:
@@ -100,12 +100,36 @@ def feedback(request):
     html_template = loader.get_template('home/feedback.html')
     return render(request,'home/feedback.html',context = context)
 
+@login_required(login_url="/login/")
+def profileedit(request):
+    context = {'segment': 'Profile Edit'}
+    form = ProfileForm()
+    if request.method=='POST':
+        form  = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            edit = form.save(commit=False)
+            edit.user = request.user
+            edit.save()
+            messages.success(request,'Profile Updated.')
+            return redirect('profile')
+        else:
+            messages.error(request,'Profile could not be updated.')
+    context['form'] = form
+    html_template = loader.get_template('home/profileedit.html')
+    return render(request,'home/profileedit.html',context = context)
+
 def product(request,id):
-    context = {'segment': 'product'}
+    context = {
+        'title' : 'Product',
+        'segment': 'product'
+        }
     product = get_object_or_404(Nft,pk=id)
+    bids = Bid.objects.filter(nft__id=id)
     context['product'] = product
+    context['bids'] = bids
     return render(request, 'home/product.html',context=context)
 
+@login_required(login_url="/login/")
 def checkout(request,id):
     context = {'segment': 'product'}
     product = get_object_or_404(Nft,pk=id)
@@ -141,12 +165,13 @@ def bid(request,id):
     html_template = loader.get_template('home/bid.html')
     return render(request,'home/bid.html',context = context)
 
-def creator(request):
-    categories = Category.objects.all()
-    nfts = Nft.objects.all()
+def creator(request,name):
+    ##pro = Profile.objects.filter(name__username__icontains=name)
+    nfts = Nft.objects.filter(creator__username__icontains=name)
+    print(nfts)
     ctx = {'title': "Recommended Creator",
            'nfts': nfts,
-           'cats': categories,
+          ## 'pro': pro,
            }
     return render(request, "home/creator.html", ctx)
 

@@ -156,54 +156,54 @@
   <h2>Recommended Creators</h2>
   <div class="row">
     <div class="col-lg-3 col-md-6 col-sl-12">
-      <a href="{% url 'creator' %}">
+      <a href="{% url 'creator' 'fekiki' %}">
         <div class="card card1" style="width: 18rem;">
-          <img src="/static\assets\images\products/fekikibanner.jpeg" class="card-img-top img-fluid creator-img" alt="...">
+          <img src="/static\assets\images\products/fekikibanner.jpeg" class="card-img-top img-fluid creator-img"
+            alt="...">
           <div class="card-body">
             <h5 class="card-title center">Fekiki Club</h5>
-            <p class="card-text center">Some quick example text to build on the card title and make up the bulk of the
-              card's
-              content.
+            <p class="card-text center">
+              FEKIKI is the Secret Key to unlock more FEKIRA UNIVERSE benefits in the near future!
             </p>
           </div>
         </div>
       </a>
     </div>
     <div class="col-lg-3 col-md-6 col-sl-12">
-      <a href="#">
+      <a href="{% url 'creator' '42Labs' %}">
         <div class="card card1" style="width: 18rem;">
           <img src="/static/assets/images/landing/rcreator2.jpeg" class="card-img-top creator-img" alt="...">
           <div class="card-body">
             <h5 class="card-title center">Warrior Women</h5>
-            <p class="card-text center">Some quick example text to build on the card title and make up the bulk of the
-              card's
-              content.
+            <p class="card-text center">
+              1200 woman warriors entered the metaverse. They are brave and beautiful. They fight for peace and love.
             </p>
           </div>
         </div>
       </a>
     </div>
     <div class="col-lg-3 col-md-6 col-sl-12">
-      <a href="#">
+      <a href="{% url 'creator' 'nft-cat' %}">
         <div class="card card1" style="width: 18rem;">
           <img src="/static/assets/images/landing/rcreator3.png" class="card-img-top creator-img" alt="...">
           <div class="card-body">
             <h5 class="card-title center">Meta Angel</h5>
-            <p class="card-text center">Some quick example text to build on the card title and make up the bulk of the
-              card's
-              content.
+            <p class="card-text center">
+              Unique collection consisting of 1111 meta-angels,
+               which live in a parallel world of the metaverse that intersects with the real world.
             </p>
           </div>
         </div>
       </a>
     </div>
     <div class="col-lg-3 col-md-6 col-sl-12">
-      <a href="#">
+      <a href="{% url 'creator' 'fekiki' %}">
         <div class="card card1" style="width: 18rem;">
           <img src="/static/assets/images/landing/rcreator4.jpeg" class="card-img-top creator-img" alt="...">
           <div class="card-body">
             <h5 class="card-title center">One Ape</h5>
-            <p class="card-text center">Some quick example text to build on the card title and make up the bulk of the
+            <p class="card-text center">
+              Some quick example text to build on the card title and make up the bulk of the
               card's
               content.
             </p>
@@ -218,8 +218,8 @@
   <h2>Trending</h2>
   <div class="row">
     {% for item in nfts %}
-    
-    {% if item.is_featured == 'True' %}
+
+    {% if item.category.name == 'Collectibles' %}
     <div class="col-lg-3 col-md-6 col-sl-12">
       <a href="{% url 'product' item.id %}">
         <div class="card card2" style="width: 18rem;">
@@ -233,7 +233,7 @@
       </a>
     </div>
     {% endif %}
-      
+
     {% empty %}
     <div class="alert alert-warning text-center" role="alert">
       <h4 class="alert-heading">No Products found!</h4>

@@ -53,7 +53,7 @@
     padding-bottom: 20px;
   }
 
-  h5{
+  h5 {
     padding-bottom: 10px;
   }
 </style>
@@ -85,7 +85,7 @@
       <a href="{% url 'bid' product.id %}"><button class="offer-button">Make an Offer</button></a>
 
       <h4 class="pro-head">Provenance</h4>
-      
+
       <table class="table">
         <thead>
           <tr>
@@ -96,17 +96,19 @@
           </tr>
         </thead>
         <tbody>
+
+          {% for bid in bids %}
           <tr>
-            <th scope="row"></th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
+            <th scope="row">{{bid.user.username}}</th>
+            <td>Upcoming Bid</td>
+            <td>{{bid.amount}}</td>
+            <td>{{bid.date}}</td>
           </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+
+          {% empty %}
+
+          {% endfor %}
+
           <tr>
             <th scope="row">{{product.minted_by}}</th>
             <td>Mint</td>

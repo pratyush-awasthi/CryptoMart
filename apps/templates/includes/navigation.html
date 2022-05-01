@@ -12,6 +12,10 @@
   .btn-custom-register{
     background-color: yellow;
   }
+
+  .custom-margin{
+    margin-right: 25px;
+  }
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -55,13 +59,14 @@
         <button class="btn btn-light rounded-0" type="submit"> <i class="fa fa-search" aria-hidden="true"></i> </button>
       </form>
       {% if user.is_authenticated %}
-      <div class="dropdown btn-drop">
+      <div class="dropdown btn-drop custom-margin">
         <a class="btn  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
           {{user.username}}
         </a>
         
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <li><a class="dropdown-item" href="{% url 'profile' %}">Dashboard</a></li>
+          <li><a class="dropdown-item" href="{% url 'profileedit' %}">Edit your Profile</a></li>
           <li><a class="dropdown-item" href="{% url 'newupload' %}">New Nft</a></li>
           <li><a class="dropdown-item" href="{% url 'newcategory' %}">New Category</a></li>
           <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>

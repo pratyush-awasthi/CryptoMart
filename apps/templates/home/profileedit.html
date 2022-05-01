@@ -1,0 +1,37 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block stylesheets %}
+    <style>
+        .col-lg-6{
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .update-head{
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        .custom-m{
+            margin-bottom: 20px;
+        }
+    </style>
+{% endblock stylesheets %}
+    
+
+{% block content %}
+<div class="contain">
+    <div class="row">
+        <h2 class="update-head">Hey! {{user.username}}...Please update your profile. </h2>
+        <div class="col-lg-6">
+         <form method="POST" enctype="multipart/form-data">
+             {% csrf_token %}
+             {{form|crispy}}
+             <button class="btn custom-m btn-primary">Update your Profile</button>
+         </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+    

@@ -20,4 +20,9 @@ class NewCategoryForm(forms.ModelForm):
 class FeedbackForm(forms.ModelForm):
     class Meta:
         model = Feedback
-        fields = ('name','email','description',)
+        fields = ('name','contact_no','email','subject','description',)
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('image','banner','name','bio','address','contact','wallet_id',)

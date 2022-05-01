@@ -165,6 +165,8 @@ class NewCategory(models.Model):
 
 class Feedback(models.Model):
     name = models.CharField(max_length=225)
+    subject = models.CharField(max_length=225)
+    contact_no = models.CharField(max_length=225)
     email = models.EmailField()
     time = models.DateTimeField(auto_now=True)
     description = models.TextField()
