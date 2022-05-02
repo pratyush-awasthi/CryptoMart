@@ -1,32 +1,34 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
-  a{
+
+  a {
     font-family: 'Fredoka', sans-serif;
     font-weight: 400;
   }
 
-  .btn-custom-login{
+  .btn-custom-login {
     margin-right: 10px;
   }
 
-  .btn-custom-register{
+  .btn-custom-register {
     background-color: yellow;
   }
 
-  .custom-margin{
-    margin-right: 25px;
+  .rp {
+    padding-left: 16px;
   }
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
+  <div class="container-fluid rp">
     <a class="navbar-brand" href="{% url 'home' %}">CryptoMart</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        
+
         {% if user.is_superuser %}
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'viewfeedback' %}">Feedbacks</a>
@@ -53,18 +55,19 @@
 
         {% endif %}
       </ul>
-      <form class="d-flex" action="#" autocomplete="off" >
-        <input class="form-control custom-font rounded-0" type="search" 
-        placeholder="Search" aria-label="Search" name="query">
+      <form class="d-flex" action="#" autocomplete="off">
+        <input class="form-control custom-font rounded-0" type="search" placeholder="Search" aria-label="Search"
+          name="query">
         <button class="btn btn-light rounded-0" type="submit"> <i class="fa fa-search" aria-hidden="true"></i> </button>
       </form>
       {% if user.is_authenticated %}
       <div class="dropdown btn-drop custom-margin">
-        <a class="btn  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="btn  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+          aria-expanded="false">
           {{user.username}}
         </a>
-        
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+        <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenuLink">
           <li><a class="dropdown-item" href="{% url 'profile' %}">Dashboard</a></li>
           <li><a class="dropdown-item" href="{% url 'profileedit' %}">Edit your Profile</a></li>
           <li><a class="dropdown-item" href="{% url 'newupload' %}">New Nft</a></li>
