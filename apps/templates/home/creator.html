@@ -5,7 +5,7 @@
 <style>
   .contain {
     height: 400px;
-    background-image: url("/static/assets/images/products/banner4.jpeg");
+    background-image: url("{{pro.banner.url}}");
     background-position: center;
 
   }
@@ -32,9 +32,23 @@
     color: black;
   }
 
-  .custom-height{
+  .custom-height {
     height: 300px;
     width: auto;
+  }
+
+  .cus-card {
+    margin-bottom: 20px;
+  }
+
+  .row {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .container-fluid {
+    padding-left: 50px;
+    padding-right: 50px;
   }
 </style>
 {% endblock stylesheets %}
@@ -43,8 +57,8 @@
 <div class="contain"></div>
 
 <div class="container">
-  <h3 class="creator-head">Fekiki Club</h3>
-  <h5 class="creator-descp">A unique collection of 888 Unbothered Frenchies out now! <br>
+  <h3 class="creator-head">{{pro.name}}</h3>
+  <h5 class="creator-descp">{{pro.bio}}<br>
     Instagram/Twitter: @pachispace
     <br>Discord: https://discord.gg/pachispace
   </h5>
@@ -56,11 +70,11 @@
 
     <div class="col-lg-3 col-md-6 col-sl-12">
       <a href="{% url 'product' item.id %}">
-        <div class="card card2" style="width: 18rem;">
+        <div class="card cus-card card2" style="width: 18rem;">
           <img src="{{item.image.url}}" class="card-img-top custom-height" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{item.title}}</h5>
-            <p>Current Bid: {{item.price}} {{item.currency}}</p>
+            <p>Current Price: {{item.price}} {{item.currency}}</p>
             <P>Creator: {{item.owner}}</P>
           </div>
         </div>

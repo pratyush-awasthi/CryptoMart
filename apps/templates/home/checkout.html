@@ -8,17 +8,9 @@
             padding-top: 30px;
             padding-bottom: 20px;
         }
-        .price-head{
-            padding-top: 20px;
-        }
-        .ship-head{
-            padding-top: 20px;
-        }
-        .sub-head{
-            padding-top: 20px;
-        }
         .total-head{
             padding-top: 20px;
+            margin-bottom: 20px;
         }
     </style>
 {% endblock stylesheets %}
@@ -42,14 +34,24 @@
                     <div class="card-body">
                       <h5 class="card-title">{{product.title}}</h5>
                       <p class="card-text"><small class="text-muted">{{product.category}}</small></p>
+                      <p class="card-text">{{product.description|truncatechars:250}}</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <h4 class="price-head">Price : {{product.price}}</h4>
-              <h4 class="total-head">Total Value: {{product.price}} {{product.currency}}</h4>
+              <h4 class="total-head">Nft Value : {{product.price}} {{product.currency}}</h4>
+              <h4 class="total-head">Taxes : {{product.price}} {{product.currency}}</h4>
+              <h4 class="total-head">Final Value : {{product.price}} {{product.currency}}</h4>
+
+
+              
         </div>
     </div>
 </div>
 {% endblock content %}
+
+
+{% block js_plugins %}
+{% endblock js_plugins %}
+  

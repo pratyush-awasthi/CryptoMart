@@ -1,0 +1,65 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block stylesheets %}
+<style>
+    .all-head {
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .custom-height {
+        height: 300px;
+        width: auto;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    a:hover {
+        color: black;
+    }
+
+    .cus-card {
+        margin-bottom: 20px;
+    }
+
+    .container-fluid {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+</style>
+{% endblock stylesheets %}
+
+
+
+{% block content %}
+<div class="container-fluid">
+    <h2 class="all-head">All Nfts</h2>
+    <div class="row">
+
+        {% for item in nfts %}
+        <div class="col-lg-3 col-md-6 col-sl-12">
+            <a href="{% url 'product' item.id %}">
+                <div class="card cus-card card2" style="width: 18rem;">
+                    <img src="{{item.image.url}}" class="card-img-top custom-height" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.title}}</h5>
+                        <p>Current Price: {{item.price}} {{item.currency}}</p>
+                        <P>Creator: {{item.owner}}</P>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {% empty %}
+        <div class="alert alert-warning text-center" role="alert">
+            <h4 class="alert-heading">No Nft found!</h4>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock content %}

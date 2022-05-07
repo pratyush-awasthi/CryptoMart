@@ -87,7 +87,7 @@
     width: auto;
   }
 
-  .custom-height{
+  .custom-height {
     height: 300px;
     width: auto;
   }
@@ -195,7 +195,7 @@
             <h5 class="card-title center">Meta Angel</h5>
             <p class="card-text center">
               Unique collection consisting of 1111 meta-angels,
-               which live in a parallel world of the metaverse that intersects with the real world.
+              which live in a parallel world of the metaverse that intersects with the real world.
             </p>
           </div>
         </div>
@@ -232,7 +232,7 @@
           <img src="{{item.image.url}}" class="card-img-top custom-height" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{item.title}}</h5>
-            <p>Current Bid: {{item.price}} {{item.currency}}</p>
+            <p>Current Price: {{item.price}} {{item.currency}}</p>
             <P>Creator: {{item.owner}}</P>
           </div>
         </div>
@@ -254,7 +254,7 @@
   <h2>Art</h2>
   <div class="row">
 
-    {% for item in nfts %}
+    {% for item in artnfts %}
     {% if item.category.name == 'Art' %}
     <div class="col-lg-3 col-md-6 col-sl-12">
       <a href="{% url 'product' item.id %}">
@@ -262,7 +262,7 @@
           <img src="{{item.image.url}}" class="card-img-top custom-height" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{item.title}}</h5>
-            <p>Current Bid: {{item.price}} {{item.currency}}</p>
+            <p>Current Price: {{item.price}} {{item.currency}}</p>
             <P>Creator: {{item.owner}}</P>
           </div>
         </div>
