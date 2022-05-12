@@ -1,0 +1,31 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block stylesheets %}
+<style>
+    
+    
+</style>
+{% endblock stylesheets %}
+
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid bg-danger">
+    <div class="container">
+        <h1 class="display-3">Transaction Cancelled</h1>
+        <p class="lead">you cancelled the payment</p>
+        <hr class="my-2">
+        <p>back to home</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{% url 'allnfts' %}" role="button">Browse Products</a>
+        </p>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block js_plugins %}
+
+{% endblock js_plugins %}

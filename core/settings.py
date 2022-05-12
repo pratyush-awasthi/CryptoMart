@@ -134,8 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGOUT_REDIRECT_URL = '/'
 
-STRIPE_PUBLIC_KEY = ""
-STRIPE_SECRET_KEY = ""
-STRIPE_WEBHOOK_SECRET = ""
+STRIPE_PUBLISHABLE_KEY = "pk_test_51Kx4wlSEImaEwe039RDo8pJEk3Lu9So3lA4ZtFu0VZ00cS4KI4sLQi4pQfsmzMSpxiRkccOqCKXOcakuLBaU4eNx00wOC92sfU"
+STRIPE_SECRET_KEY = "sk_test_51Kx4wlSEImaEwe03UNBmVo3bmYCR8BSTWhSkrhEPpBuanZL6UCMetXzzcZo4mBLKrlbNV8mxGZNoWHJYoCsmh99100RioVbxef"
 #############################################################
 #############################################################

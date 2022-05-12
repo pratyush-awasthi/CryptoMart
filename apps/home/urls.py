@@ -23,5 +23,9 @@ urlpatterns = [
     path('all/nfts/', views.allnfts, name='allnfts'),
     path('edit/your/profile/', views.profileedit, name='profileedit'),
     path('bidding/<int:id>', views.bid, name='bid'),
+    path("config/",views.stripe_config, name='config'),
     path('checkout/product/buy/<int:id>/', views.checkout, name='checkout'),
+    path('create-checkout-session/',views.create_checkout_session,name='create_checkout_session'),
+    path('success/',views.notify_success,name='success'),
+    path('cancelled/',views.notify_cancelled,name='cancelled'),
 ]

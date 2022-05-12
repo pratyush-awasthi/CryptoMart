@@ -1,5 +1,5 @@
 {% extends "layouts/base.html" %}
-
+{% load static %}
 
 {% block stylesheets %}
 <style>
@@ -81,7 +81,7 @@
       <h5 class="type">{{product.category}}</h5>
       <p>Price</p>
       <h2>{{product.price}} {{product.currency}}</h2>
-      <a href="{% url 'checkout' product.id %}"><button class="buy-button">Buy Now</button></a>
+      <a href="{% url 'checkout' product.id %}"><button class="buy-button" id="purchasebtn">Buy Now</button></a>
       <a href="{% url 'bid' product.id %}"><button class="offer-button">Make an Offer</button></a>
 
       <h4 class="pro-head">Provenance</h4>
@@ -121,3 +121,7 @@
   </div>
 </div>
 {% endblock content %}
+
+
+
+  

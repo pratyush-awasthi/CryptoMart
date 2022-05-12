@@ -1,6 +1,6 @@
 # CryptoMart
 
-> AN E-Commerce Platform. - Features:
+> An E-Commerce Platform. - Features:
 
 
 

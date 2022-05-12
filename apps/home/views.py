@@ -8,9 +8,12 @@ from unicodedata import category
 from django.contrib import messages
 from django import template
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 from django.urls import reverse
+import stripe
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 from sympy import Id
 from .forms import *
 from .models import *
@@ -25,6 +28,59 @@ def index(request):
     html_template = loader.get_template('home/index.html')
     return HttpResponse(html_template.render(context, request))
 
+@csrf_exempt
+def stripe_config(request):
+    if request.method == "GET":
+        stripe_config = {'publicKey':settings.STRIPE_PUBLISHABLE_KEY}
+        return JsonResponse(stripe_config,safe=False)
+
+
+@csrf_exempt
+def create_checkout_session(request):
+    if request.method =='GET':
+        domain_url = "http://127.0.0.1:8000/"
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        price = request.GET.get('price')
+        price = str(price).replace('.','0')+"00"
+        if isinstance(request.session.get('cart'),dict):
+            for k,v in request.session['cart'].items():
+                print(v)
+                product = Nft.objects.get(id=v['product_id'])
+                print(product)
+                order = Transaction(buyer=request.user,product=product)
+                order.save()
+        else:
+            print('no cart found')
+        try:
+            checkout_session = stripe.checkout.Session.create(
+                # new
+                client_reference_id=request.user.id if request.user.is_authenticated else None,
+                success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url=domain_url + 'cancelled/',
+                payment_method_types=['card'],
+                mode='payment',
+                line_items=[
+                    {   
+                        'name':'Medica Payment',
+                        'quantity':1,
+                        'currency':'inr',
+                        'amount': int(price),
+                    }
+                ]
+            )
+            return JsonResponse({'sessionId': checkout_session['id']})
+        except Exception as e:
+            return JsonResponse({'error': str(e)})
+
+def notify_success(request):
+    messages.success(request,f"Your payment is complete.")
+    cart = Cart(request)
+    cart.clear()
+    return render(request,"home/success.html")
+
+def notify_cancelled(request):
+    messages.error(request,f"Your payment is cancelled.")
+    return render(request,"home/cancelled.html")
 
 @login_required(login_url="/login/")
 def categoryrequest(request):
