@@ -5,21 +5,27 @@
 
 {% block stylesheets %}
 <style>
-    
-    
+    .cancel-head{
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    .payment-head{
+        text-align: center;
+        margin-bottom: 20px;
+    }
 </style>
 {% endblock stylesheets %}
 
 
 {% block content %}
 <div class="jumbotron jumbotron-fluid bg-danger">
-    <div class="container">
-        <h1 class="display-3">Transaction Cancelled</h1>
-        <p class="lead">you cancelled the payment</p>
+    <div class="container " style="height: 500px;">
+        <h1 class="display-3 cancel-head">Transaction Cancelled</h1>
+        <p class="lead payment-head">You Cancelled the Payment</p>
         <hr class="my-2">
-        <p>back to home</p>
         <p class="lead">
-            <a class="btn btn-primary btn-lg" href="{% url 'allnfts' %}" role="button">Browse Products</a>
+            <a class="btn btn-primary btn-lg  custom-btn" href="{% url 'landing' %}" role="button">Back to Home</a>
         </p>
     </div>
 </div>

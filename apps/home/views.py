@@ -11,14 +11,15 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 from django.urls import reverse
+from requests import session
 import stripe
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-from sympy import Id
+from sympy import Id, re
 from .forms import *
 from .models import *
 from django.shortcuts import render, redirect, get_object_or_404
-
+from uuid import uuid4
 
 
 @login_required(login_url="/login/")
@@ -41,16 +42,19 @@ def create_checkout_session(request):
         domain_url = "http://127.0.0.1:8000/"
         stripe.api_key = settings.STRIPE_SECRET_KEY
         price = request.GET.get('price')
+        pid = request.GET.get('pid')
+        item = Nft.objects.filter(id=pid).first()
+
         price = str(price).replace('.','0')+"00"
-        if isinstance(request.session.get('cart'),dict):
-            for k,v in request.session['cart'].items():
-                print(v)
-                product = Nft.objects.get(id=v['product_id'])
-                print(product)
-                order = Transaction(buyer=request.user,product=product)
-                order.save()
-        else:
-            print('no cart found')
+        print("price",price,"item",item)
+        itemdata=[{   
+                    'name':item.title,
+                    'quantity':1,
+                    'currency':'inr',
+                    'amount': int(price) * 80,   
+                    'description':item.description,
+                }]
+        
         try:
             checkout_session = stripe.checkout.Session.create(
                 # new
@@ -59,23 +63,30 @@ def create_checkout_session(request):
                 cancel_url=domain_url + 'cancelled/',
                 payment_method_types=['card'],
                 mode='payment',
-                line_items=[
-                    {   
-                        'name':'Medica Payment',
-                        'quantity':1,
-                        'currency':'inr',
-                        'amount': int(price),
-                    }
-                ]
+                line_items=itemdata,
             )
+            owner = User.objects.filter(username__icontains=item.owner.split()[0]).first()
+            print(item.owner, owner)
+            order = Transaction(
+                transaction_id=checkout_session['id'],
+                old_owner=owner,
+                new_owner=request.user,
+                details = item.title+" purchased",
+                nft = item,
+                deposit_address = uuid4()               )
+            order.save()
+            request.session['orderId'] = order.id
             return JsonResponse({'sessionId': checkout_session['id']})
         except Exception as e:
+            print(e)
             return JsonResponse({'error': str(e)})
 
 def notify_success(request):
     messages.success(request,f"Your payment is complete.")
-    cart = Cart(request)
-    cart.clear()
+    if 'orderId' in request.session:
+        order = Transaction.objects.get(id=request.session['orderId'])
+        ctx  = {'order':order}
+        return render(request,"home/success.html",ctx)
     return render(request,"home/success.html")
 
 def notify_cancelled(request):
@@ -111,17 +122,18 @@ def allnfts(request):
 
 def landing(request):
     categories = Category.objects.all()
-
     nfts = choices(list(Nft.objects.filter(
         category__name__contains='Collectibles')), k=12)
     artnfts = choices(list(Nft.objects.filter(
         category__name__contains='Art')), k=8)
+    trans = Transaction.objects.all()
     print(len(nfts))
     print(len(artnfts))
     ctx = {'title': "Home",
            'nfts': nfts,
            'artnfts': artnfts,
            'cats': categories,
+           'trans': trans,
            }
     return render(request, "home/landing.html", ctx)
 
@@ -186,7 +198,8 @@ def feedback(request):
 @login_required(login_url="/login/")
 def profileedit(request):
     context = {'segment': 'Profile Edit'}
-    form = ProfileForm()
+    profile = Profile.objects.filter(user=request.user).last()
+    form = ProfileForm(instance =profile)
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -224,10 +237,13 @@ def checkout(request, id):
 
 @login_required(login_url="/login/")
 def profile(request):
-    context = {'segment': 'profile'}
+    profile = Profile.objects.filter(user=request.user).last()
+    context = {
+        'title' : 'Dashboard',
+        'profile' : profile
+        }
 
-    html_template = loader.get_template('home/profile.html')
-    return HttpResponse(html_template.render(context, request))
+    return  render(request, 'home/profile.html', context=context)
 
 
 @login_required(login_url="/login/")
@@ -262,6 +278,19 @@ def creator(request, name):
            }
     return render(request, "home/creator.html", ctx)
 
+def search_nft(request):
+    q = request.GET.get('query')
+    if q:
+        results = Nft.objects.filter(title__contains=q)
+        print(results)
+        if len(results)>0:
+            ctx = {
+                'title':'Search Results',
+                'results':results,
+                'query':q,
+            }
+            return render(request, "home/search.html",ctx)
+    return redirect('landing')
 
 @login_required(login_url="/login/")
 def pages(request):

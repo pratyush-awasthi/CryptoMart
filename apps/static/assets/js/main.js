@@ -9,7 +9,10 @@ fetch('/config/')
     
     document.querySelector('#purchasebtn').addEventListener('click',()=>{
         var amt = parseFloat(document.querySelector(".famt>span").innerHTML)
-        fetch('/create-checkout-session/?price='+amt)
+        var pid = document.querySelector('#purchasebtn').getAttribute('data-productid')
+
+        console.log("amount",amt)
+        fetch('/create-checkout-session/?price='+amt+"&pid="+pid)
         .then((result)=>{return result.json();})
         .then((data)=>{
             console.log(data);

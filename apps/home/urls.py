@@ -10,7 +10,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
 
     # The home page
-    path('', views.landing, name='home'),
+    path('', views.landing, name='landing'),
     path('index/', views.index, name='index'),
     path('product/<int:id>/', views.product, name='product'),
     path('creator/<str:name>', views.creator, name='creator'),
@@ -23,6 +23,7 @@ urlpatterns = [
     path('all/nfts/', views.allnfts, name='allnfts'),
     path('edit/your/profile/', views.profileedit, name='profileedit'),
     path('bidding/<int:id>', views.bid, name='bid'),
+    path('search/',views.search_nft,name="search"),
     path("config/",views.stripe_config, name='config'),
     path('checkout/product/buy/<int:id>/', views.checkout, name='checkout'),
     path('create-checkout-session/',views.create_checkout_session,name='create_checkout_session'),

@@ -3,54 +3,79 @@
 
 
 {% block stylesheets %}
-    <style>
-        .checkout-head{
-            padding-top: 30px;
-            padding-bottom: 20px;
-        }
-        .total-head{
-            padding-top: 20px;
-            margin-bottom: 20px;
-        }
-    </style>
+<style>
+  .checkout-head {
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }
+
+  .total-head {
+    padding-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .cen {
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
 {% endblock stylesheets %}
-    
+
 
 {% block content %}
 <div class="container">
-    <h3 class="checkout-head">Checkout</h3>
-    <div class="row">
-        <div class="col-lg-6">
-
+  <h3 class="checkout-head">Checkout...Just few steps before you can buy your Nft!!</h3>
+  <div class="row">
+    <div class="col-lg-6 cen">
+      <h4>Order Summary</h4>
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{product.image.url}}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{product.title}}</h5>
+              <p class="card-text"><small class="text-muted">{{product.category}}</small></p>
+              <p class="card-text">{{product.description|truncatechars:250}}</p>
+            </div>
+          </div>
         </div>
-        <div class="col-lg-6">
-            <h4>Order Summary</h4>
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    <img src="{{product.image.url}}" class="img-fluid rounded-start" alt="...">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">{{product.title}}</h5>
-                      <p class="card-text"><small class="text-muted">{{product.category}}</small></p>
-                      <p class="card-text">{{product.description|truncatechars:250}}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      </div>
 
-              <h4 class="total-head">Nft Value : {{product.price}} {{product.currency}}</h4>
-              <h4 class="total-head">Taxes : {{product.price}} {{product.currency}}</h4>
-              <h4 class="total-head famt">Final Value : <span>{{product.price}}</span> {{product.currency}}</h4>
-              <button class="btn btn-block" id="purchasebtn">Place Order</button>
-              
-        </div>
+      <h4 class="total-head ">Nft Value : <span id="initial">{{product.price}}</span> {{product.currency}}</h4>
+      <h4 class="total-head ">Taxes : <span id="tax">{{product.price}}</span> {{product.currency}}</h4>
+      <h4 class="total-head famt">Final Value : <span id="final">{{product.price}}</span> {{product.currency}}</h4>
+
+      <button class="btn btn-block btn-danger mb-3" data-productid="{{product.id}}" id="purchasebtn">Continue</button>
+
     </div>
+  </div>
 </div>
 {% endblock content %}
+
+
+
+
 
 {% block js_plugins %}
 <script src="https://js.stripe.com/v3/"></script>
 <script src="{% static 'assets/js/main.js' %}"></script>
 {% endblock js_plugins %}
+
+{% block javascripts %}
+<script type="text/javascript">
+  function taxes() {
+    var initial_value = document.getElementById("initial");
+    var tax_value
+    var final_value
+
+    tax_value = initial_value + (initial_value * 0.1);
+
+    final_value = initial_value + tax;
+
+    document.getElementByID("tax").innerHTML = tax_value
+    document.getElementByID("final").innerHTML = final_value
+  }
+</script>
+{% endblock javascripts %}

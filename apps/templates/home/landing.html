@@ -154,8 +154,13 @@
   </button>
 </div>
 
-<marquee class="sale-preview" behavior="scroll" direction="up" scrollamount="2">Latest NFT Sold ek crore nft bik chuki
-  hai samjhe</marquee>
+<marquee class="sale-preview" behavior="scroll" direction="up" scrollamount="2">
+{% for item in trans %}
+  {{item.new_owner}} just bought {{item.nft}}
+{% empty %}
+  
+{% endfor %}
+  </marquee>
 
 <div class="container-fluid">
   <h2>Recommended Creators</h2>

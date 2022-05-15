@@ -91,6 +91,7 @@ class Profile(models.Model):
     address = models.TextField()
     contact = models.CharField(max_length=255)
     wallet_id = models.CharField(max_length=255)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
 
     # TODO: Define fields here
 

@@ -23,7 +23,7 @@
     }
 
     .background {
-        background-image: url("/static/assets/images/landing/andal.jpeg");
+        background-image: url("{{profile.banner.url}}");
         background-position: center;
         background-size: 120%;
         border-radius: 20px 20px 0px 0px;
@@ -67,30 +67,13 @@
         <div class="col-lg-11">
             <div class="background">
                 <div class="container">
-                    <img class="img-fluid img-profile" src="/static/assets/images/landing/nft/nft1.png" alt="">
+                    <img class="img-fluid img-profile" src="{{profile.image.url}}" alt="">
                 </div>
             </div>
             <h2 class="pro-head">Welcome to your Dashboard {{user.username}}</h2>
 
-            <h3 class="total-nft">Your total Nfties : 1 Crore</h3>
-
             <div class="container">
-                <h3 class="latest">Your Latest Nfties</h3>
-                <div class="col-lg-3">
-                    <a href="#">
-                        <div class="card card2" style="width: 18rem;">
-                            <img src="/static/assets/images/landing/nft/nft1.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p>Current Bid: </p>
-                                <P>Creator: </P>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="container">
-                <h3 class="featured">Your Featured Nfties</h3>
+                <h3 class="latest">Your Collection</h3>
                 <div class="col-lg-3">
                     <a href="#">
                         <div class="card card2" style="width: 18rem;">
