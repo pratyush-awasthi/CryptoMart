@@ -48,11 +48,13 @@
         padding-top: 20px;
         padding-bottom: 20px;
     }
-    a{
+
+    a {
         color: black;
         text-decoration: none;
     }
-    a:hover{
+
+    a:hover {
         color: black;
     }
 </style>
@@ -74,20 +76,28 @@
 
             <div class="container">
                 <h3 class="latest">Your Collection</h3>
-                <div class="col-lg-3">
-                    <a href="#">
-                        <div class="card card2" style="width: 18rem;">
-                            <img src="/static/assets/images/landing/nft/nft1.png" class="card-img-top" alt="...">
+                {% for item in transactions %}
+                <div class="col-lg-3 col-md-6 col-sl-12">
+                    <a href="{% url 'product' item.id %}">
+                        <div class="card cus-card card2" style="width: 18rem;">
+                            <img src="{{item.nft.image.url}}" class="card-img-top custom-height" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p>Current Bid: </p>
-                                <P>Creator: </P>
+                                <h5 class="card-title">{{item.nft.title}}</h5>
+                                <p>Current Price: {{item.nft.price}} {{item.nft.currency}}</p>
+                                <P>Creator: {{item.nft.owner}}</P>
                             </div>
                         </div>
                     </a>
                 </div>
+
+                {% empty %}
+                <div class="alert alert-warning text-center" role="alert">
+                    <h4 class="alert-heading">No Products found!</h4>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
+</div>
 </div>
 {% endblock content %}

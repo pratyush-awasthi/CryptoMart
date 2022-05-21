@@ -91,6 +91,10 @@
     height: 300px;
     width: auto;
   }
+
+  .recommed-head{
+    padding-top: 30px;
+  }
 </style>
 {% endblock stylesheets %}
 
@@ -154,16 +158,8 @@
   </button>
 </div>
 
-<marquee class="sale-preview" behavior="scroll" direction="up" scrollamount="2">
-{% for item in trans %}
-  {{item.new_owner}} just bought {{item.nft}}
-{% empty %}
-  
-{% endfor %}
-  </marquee>
-
 <div class="container-fluid">
-  <h2>Recommended Creators</h2>
+  <h2 class="recommed-head">Recommended Creators</h2>
   <div class="row">
     <div class="col-lg-3 col-md-6 col-sl-12">
       <a href="{% url 'creator' 'fekiki' %}">
@@ -182,7 +178,7 @@
     <div class="col-lg-3 col-md-6 col-sl-12">
       <a href="{% url 'creator' '42Labs' %}">
         <div class="card card1" style="width: 18rem;">
-          <img src="/static/assets/images/landing/rcreator2.jpeg" class="card-img-top creator-img" alt="...">
+          <img src="/static/assets/images/warrior_banner.jpeg" class="card-img-top creator-img" alt="...">
           <div class="card-body">
             <h5 class="card-title center">Warrior Women</h5>
             <p class="card-text center">
@@ -209,7 +205,7 @@
     <div class="col-lg-3 col-md-6 col-sl-12">
       <a href="{% url 'creator' 'one_ape' %}">
         <div class="card card1" style="width: 18rem;">
-          <img src="/static/assets/images/landing/rcreator4.jpeg" class="card-img-top creator-img" alt="...">
+          <img src="/static/assets/images/one_banner.jpeg" class="card-img-top creator-img" alt="...">
           <div class="card-body">
             <h5 class="card-title center">One Ape</h5>
             <p class="card-text center">

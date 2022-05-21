@@ -231,6 +231,7 @@ def product(request, id):
 def checkout(request, id):
     context = {'segment': 'product'}
     product = get_object_or_404(Nft, pk=id)
+    
     context['product'] = product
     return render(request, 'home/checkout.html', context=context)
 
@@ -238,9 +239,11 @@ def checkout(request, id):
 @login_required(login_url="/login/")
 def profile(request):
     profile = Profile.objects.filter(user=request.user).last()
+    transactions = Transaction.objects.filter(new_owner=request.user).all()  
     context = {
         'title' : 'Dashboard',
-        'profile' : profile
+        'profile' : profile,
+        'transactions' : transactions
         }
 
     return  render(request, 'home/profile.html', context=context)
