@@ -44,9 +44,9 @@
         </div>
       </div>
 
-      <h4 class="total-head ">Nft Value : <span id="initial">{{product.price}}</span> {{product.currency}}</h4>
-      <h4 class="total-head ">Taxes : <span id="tax">{{product.price}}</span> {{product.currency}}</h4>
-      <h4 class="total-head famt">Final Value : <span id="final">{{product.price}}</span> {{product.currency}}</h4>
+      <h4 class="total-head ">Nft Value : ₹ <span id="initial">{{product.price}}</span></h4>
+      <h4 class="total-head ">Taxes : ₹ <span id="tax">10000</span> </h4>
+      <h4 class="total-head famt">Final Value : ₹ <span id="final">{{product.price}}</span></h4>
 
       <button class="btn btn-block btn-danger mb-3" data-productid="{{product.id}}" id="purchasebtn">Continue</button>
 
@@ -66,17 +66,9 @@
 
 {% block javascripts %}
 <script type="text/javascript">
-  function taxes() {
-    var initial_value = document.getElementById("initial");
-    var tax_value
-    var final_value
-
-    tax_value = initial_value + (initial_value * 0.1);
-
-    final_value = initial_value + tax;
-
-    document.getElementByID("tax").innerHTML = tax_value
-    document.getElementByID("final").innerHTML = final_value
-  }
+  $(function () {
+       let priceTag =  $('.famt>span')
+       priceTag.html( {{product.price}}  + 10000.00    )
+    });
 </script>
 {% endblock javascripts %}

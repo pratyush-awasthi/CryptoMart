@@ -29,51 +29,54 @@ def index(request):
     html_template = loader.get_template('home/index.html')
     return HttpResponse(html_template.render(context, request))
 
+
 @csrf_exempt
 def stripe_config(request):
     if request.method == "GET":
-        stripe_config = {'publicKey':settings.STRIPE_PUBLISHABLE_KEY}
-        return JsonResponse(stripe_config,safe=False)
+        stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY}
+        return JsonResponse(stripe_config, safe=False)
 
 
 @csrf_exempt
 def create_checkout_session(request):
-    if request.method =='GET':
+    if request.method == 'GET':
         domain_url = "http://127.0.0.1:8000/"
         stripe.api_key = settings.STRIPE_SECRET_KEY
         price = request.GET.get('price')
         pid = request.GET.get('pid')
         item = Nft.objects.filter(id=pid).first()
 
-        price = str(price).replace('.','0')+"00"
-        print("price",price,"item",item)
-        itemdata=[{   
-                    'name':item.title,
-                    'quantity':1,
-                    'currency':'inr',
-                    'amount': int(price) * 80,   
-                    'description':item.description,
-                }]
-        
+        price = str(price).replace('.', '0')+"00"
+        print("price", price, "item", item)
+        itemdata = [{
+            'name': item.title,
+                    'quantity': 1,
+                    'currency': 'inr',
+                    'amount': int(price),
+                    'description': item.description,
+                    }]
+
         try:
             checkout_session = stripe.checkout.Session.create(
                 # new
                 client_reference_id=request.user.id if request.user.is_authenticated else None,
-                success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
+                success_url=domain_url + \
+                'success?session_id={CHECKOUT_SESSION_ID}',
                 cancel_url=domain_url + 'cancelled/',
                 payment_method_types=['card'],
                 mode='payment',
                 line_items=itemdata,
             )
-            owner = User.objects.filter(username__icontains=item.owner.split()[0]).first()
+            owner = User.objects.filter(
+                username__icontains=item.owner.split()[0]).first()
             print(item.owner, owner)
             order = Transaction(
                 transaction_id=checkout_session['id'],
                 old_owner=owner,
                 new_owner=request.user,
-                details = item.title+" purchased",
-                nft = item,
-                deposit_address = uuid4()               )
+                details=item.title+" purchased",
+                nft=item,
+                deposit_address=uuid4())
             order.save()
             request.session['orderId'] = order.id
             return JsonResponse({'sessionId': checkout_session['id']})
@@ -81,17 +84,27 @@ def create_checkout_session(request):
             print(e)
             return JsonResponse({'error': str(e)})
 
+
 def notify_success(request):
-    messages.success(request,f"Your payment is complete.")
+    messages.success(request, f"Your payment is complete.")
     if 'orderId' in request.session:
         order = Transaction.objects.get(id=request.session['orderId'])
-        ctx  = {'order':order}
-        return render(request,"home/success.html",ctx)
-    return render(request,"home/success.html")
+        ctx = {
+            'title': 'Successful',
+            'order': order
+        }
+        return render(request, "home/success.html", ctx)
+    return render(request, "home/success.html")
+
 
 def notify_cancelled(request):
-    messages.error(request,f"Your payment is cancelled.")
-    return render(request,"home/cancelled.html")
+     
+    messages.error(request, f"Your payment is cancelled.")
+    ctx = {
+            'title': 'Cancelled',
+        }
+    return render(request, "home/cancelled.html",ctx)
+
 
 @login_required(login_url="/login/")
 def categoryrequest(request):
@@ -199,7 +212,7 @@ def feedback(request):
 def profileedit(request):
     context = {'segment': 'Profile Edit'}
     profile = Profile.objects.filter(user=request.user).last()
-    form = ProfileForm(instance =profile)
+    form = ProfileForm(instance=profile)
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -231,7 +244,7 @@ def product(request, id):
 def checkout(request, id):
     context = {'segment': 'product'}
     product = get_object_or_404(Nft, pk=id)
-    
+
     context['product'] = product
     return render(request, 'home/checkout.html', context=context)
 
@@ -239,14 +252,14 @@ def checkout(request, id):
 @login_required(login_url="/login/")
 def profile(request):
     profile = Profile.objects.filter(user=request.user).last()
-    transactions = Transaction.objects.filter(new_owner=request.user).all()  
+    transactions = Transaction.objects.filter(new_owner=request.user).all()
     context = {
-        'title' : 'Dashboard',
-        'profile' : profile,
-        'transactions' : transactions
-        }
+        'title': 'Dashboard',
+        'profile': profile,
+        'transactions': transactions
+    }
 
-    return  render(request, 'home/profile.html', context=context)
+    return render(request, 'home/profile.html', context=context)
 
 
 @login_required(login_url="/login/")
@@ -281,19 +294,21 @@ def creator(request, name):
            }
     return render(request, "home/creator.html", ctx)
 
+
 def search_nft(request):
     q = request.GET.get('query')
     if q:
         results = Nft.objects.filter(title__contains=q)
         print(results)
-        if len(results)>0:
+        if len(results) > 0:
             ctx = {
-                'title':'Search Results',
-                'results':results,
-                'query':q,
+                'title': 'Search Results',
+                'results': results,
+                'query': q,
             }
-            return render(request, "home/search.html",ctx)
+            return render(request, "home/search.html", ctx)
     return redirect('landing')
+
 
 @login_required(login_url="/login/")
 def pages(request):
