@@ -3,11 +3,16 @@
 
 {% block stylesheets %}
 <style>
+.custom-font{
+  font-family: 'Montserrat', sans-serif;
+}
+
     .feedback-head {
         text-align: center;
         padding-top: 30px;
         padding-bottom: 20px;
         text-transform: uppercase;
+        font-family: 'Montserrat', sans-serif;
     }
     .feed-body{
         background-color: #756f6f31;
@@ -26,17 +31,17 @@
     <div class="row g-0">
       <div class="col-lg-12">
         <div class="card-body feed-body">
-          <h5 class="card-title">{{item.name}}</h5>
-          <p class="card-text">{{item.email}}</p>
-          <p class="card-text">{{item.description|truncatechars:500}}</p>
-          <p class="card-text"><small class="text-muted">{{item.time}}</small></p>
+          <h5 class="card-title custom-font">{{item.name}}</h5>
+          <p class="card-text custom-font">{{item.email}}</p>
+          <p class="card-text custom-font">{{item.description|truncatechars:500}}</p>
+          <p class="card-text custom-font"><small class="text-muted">{{item.time}}</small></p>
         </div>
       </div>
     </div>
   </div>
 {% empty %}
 <div class="alert alert-warning text-center" role="alert">
-    <h4 class="alert-heading ">No Feedbacks found! That means everything is going good</h4>
+    <h4 class="alert-heading custom-font">No Feedbacks found! That means everything is going good</h4>
 </div>
 {% endfor %}
 {% endblock content %}

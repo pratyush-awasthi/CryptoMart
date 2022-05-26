@@ -1,6 +1,10 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
 
+  .custom-font{
+    font-family: 'Montserrat', sans-serif;
+  }
+
   a {
     font-family: 'Fredoka', sans-serif;
     font-weight: 400;
@@ -25,7 +29,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid rp">
-    <a class="navbar-brand" href="{% url 'landing' %}">CryptoMart</a>
+    <a class="navbar-brand custom-font" href="{% url 'landing' %}">CryptoMart</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -35,23 +39,23 @@
 
         {% if user.is_superuser %}
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'viewfeedback' %}">Feedbacks</a>
+          <a class="nav-link active custom-font" aria-current="page" href="{% url 'viewfeedback' %}">Feedbacks</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'categoryrequest' %}">Category Requests</a>
+          <a class="nav-link active custom-font" aria-current="page" href="{% url 'categoryrequest' %}">Category Requests</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/admin">Admin</a>
+          <a class="nav-link active custom-font " aria-current="page" href="/admin">Admin</a>
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'allnfts' %}">All Nfts</a>
+          <a class="nav-link active custom-font" aria-current="page" href="{% url 'allnfts' %}">All Nfts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'feedback' %}">Feedback</a>
+          <a class="nav-link active custom-font" aria-current="page" href="{% url 'feedback' %}">Feedback</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'newupload' %}">Upload New Nft</a>
+          <a class="nav-link active custom-font" aria-current="page" href="{% url 'newupload' %}">Upload New Nft</a>
         </li>
         
 
@@ -70,19 +74,19 @@
         </a>
 
         <ul class="custom-margin dropdown-menu drop-menu" aria-labelledby="dropdownMenuLink">
-          <li><a class="dropdown-item" href="{% url 'profile' %}">Dashboard</a></li>
-          <li><a class="dropdown-item" href="{% url 'profileedit' %}">Update your Profile</a></li>
-          <li><a class="dropdown-item" href="{% url 'newupload' %}">New Nft</a></li>
-          <li><a class="dropdown-item" href="{% url 'newcategory' %}">New Category</a></li>
-          <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+          <li><a class="dropdown-item custom-font" href="{% url 'profile' %}">Dashboard</a></li>
+          <li><a class="dropdown-item custom-font" href="{% url 'profileedit' %}">Update your Profile</a></li>
+          <li><a class="dropdown-item custom-font" href="{% url 'newupload' %}">New Nft</a></li>
+          <li><a class="dropdown-item custom-font" href="{% url 'newcategory' %}">New Category</a></li>
+          <li><a class="dropdown-item custom-font" href="{% url 'logout' %}">Logout</a></li>
         </ul>
       </div>
       {% else %}
       <div class="float-none float-sm-right d-block mt-1 mt-sm-0">
-        <a href="{% url 'login' %}"><button class="btn btn-custom-login btn-outline-success">Login</button></a>
+        <a href="{% url 'login' %}"><button class="btn custom-font btn-custom-login btn-outline-success">Login</button></a>
       </div>
       <div class="float-none float-sm-right d-block mt-1 mt-sm-0">
-        <a href="{% url 'register' %}"><button class="btn btn-custom-register btn-outline-success">Register</button></a>
+        <a href="{% url 'register' %}"><button class="btn custom-font btn-custom-register btn-outline-success">Register</button></a>
       </div>
       {% endif %}
     </div>
