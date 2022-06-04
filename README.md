@@ -1,83 +1,18 @@
 # CryptoMart
 
-> An E-Commerce Platform. - Features:
+> An E-Commerce Platform. 
 
 
-
- 
-
-
-- UI Kit: **Star Admin 2** (Free Version) by **[BootstrapDash](https://bit.ly/2UTgih5)**
-
-
-- Persistance: SQLite, MySql, PostgreSQL
+- Persistance: SQLite
 - Modular design, clean codebase
 - Session-Based Authentication, Forms validation
 - Deployment scripts: Docker, Gunicorn / Nginx
-- Support via **Github** (issues tracker) and [Discord](https://discord.gg/fZC6hup).
-
-<br />
-
-> Links
-
- 
-
- 
- 
-
-- [Star Admin Django](https://appseed.us/admin-dashboards/django-star-admin) - product page
-- [Star Admin Django](https://django-star-admin.appseed-srv1.com/) - LIVE deployment
- 
-
-<br />
-
-## Quick Start in [Docker](https://www.docker.com/)
-
-> Change the directory inside the source code.
-
-```bash
-$ cd <GENERATED_CODE>
-```
-
-> Start the app in Docker
-
-```bash
-$ docker-compose up --build  
-```
-
-Visit `http://localhost:85` in your browser. The app should be up & running.
-
-<br />
-
- 
-
- 
- 
-
-![Django Star Admin - Seed provided by AppSeed.](https://user-images.githubusercontent.com/51070104/142849749-130c06e2-9ebc-4c48-84c7-d35fe1ae26b3.gif)
- 
 
 <br />
 
 ## How to use it
 
 Change the directory inside the source code.
-
-<br />
-
-> **Create a virtual environment** 
-
-```bash
-$ # Virtualenv modules installation (Unix based systems)
-$ virtualenv env
-$ source env/bin/activate
-$
-$ # Virtualenv modules installation (Windows based systems)
-$ # virtualenv env
-$ # .\env\Scripts\activate
-```
-
-<br />
 
 > **Install Depenedencies**
 
@@ -269,13 +204,7 @@ Visit `http://localhost:8001` in your browser. The app should be up & running.
 
 <br />
 
-## Credits & Links
-
-- [Django](https://www.djangoproject.com/) - The official website
-- [Boilerplate Code](https://appseed.us/boilerplate-code) - Index provided by **AppSeed**
-- [Boilerplate Code](https://github.com/app-generator/boilerplate-code) - Index published on Github
-
 <br />
 
 ---
-CryptoMart - Provided by **AppSeed** [App Generator](https://appseed.us/app-generator).
+CryptoMart.
